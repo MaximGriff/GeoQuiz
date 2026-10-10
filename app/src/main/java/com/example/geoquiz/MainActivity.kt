@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -13,8 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.geoquiz.ui.theme.GeoQuizTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,8 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GeoQuizTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    GeoQuizScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -81,6 +85,25 @@ fun GeoQuizScreen(modifier: Modifier = Modifier){
             showResultDialog = true
         }
     }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Текст вопроса
+        Text(
+            text = currentQuestion.text,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .weight(1f)
+                .padding(top = 32.dp),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
+    }
+
 }
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
@@ -90,10 +113,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     GeoQuizTheme {
-        Greeting("Android")
+        GeoQuizScreen()
     }
 }
