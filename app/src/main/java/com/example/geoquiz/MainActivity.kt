@@ -72,6 +72,15 @@ fun GeoQuizScreen(modifier: Modifier = Modifier){
             isAnswered = true
         }
     }
+
+    fun nextQuestion() {
+        if (currentIndex < questions.size - 1) {
+            currentIndex++
+            isAnswered = false
+        } else {
+            showResultDialog = true
+        }
+    }
 }
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
